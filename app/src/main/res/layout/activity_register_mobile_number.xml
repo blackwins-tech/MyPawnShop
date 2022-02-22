@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context=".Register_mobile_number">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_your_mobile_no"
+        android:fontFamily="@font/lato_bold"
+        android:textColor="@color/colorPrimary"
+        android:textSize="20dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="17dp"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/black"
+        android:text="@string/mob_no" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lato_regular"
+        android:hint="@string/enter_mob_no"
+        android:inputType="textPersonName"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="recieve_otp"
+        android:background="@drawable/rounded_corner_button"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/recieve_otp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:textSize="18dp"
+        android:fontFamily="@font/lato_regular"
+        android:textColor="@color/black"
+        android:text="@string/plz_give" />
+</LinearLayout>

@@ -10,6 +10,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyPawnShop">
         <activity
+            android:name=".create_loan"
+            android:exported="false" />
+        <activity
+            android:name=".terms_condition"
+            android:exported="false" />
+        <activity
+            android:name=".create_account"
+            android:exported="false" />
+        <activity
+            android:name=".Protect"
+            android:exported="false" />
+        <activity
+            android:name=".verify"
+            android:exported="false" />
+        <activity
+            android:name=".Register_mobile_number"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
