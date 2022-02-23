@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="16dp"
+    tools:context=".create_account">
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="@color/colorPrimary"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/welcome_to_app" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"
+        android:fontFamily="@font/lato_bold"
+        android:text="@string/plz_enter_full_name" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:textColor="@color/black"
+        android:text="@string/enter_ur_name" />
+
+    <EditText
+        android:id="@+id/editTextTextPersonName2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+         android:ems="10"
+        android:gravity="left"
+        android:fontFamily="@font/lato_regular"
+        android:hint="@string/enter_ur_name"
+        android:inputType="number" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/lato_regular"
+        android:onClick="create_account"
+        android:background="@drawable/rounded_corner_button"
+        android:text="@string/create_my_account"
+        tools:ignore="OnClick" />
+
+
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:textSize="17dp"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/black"
+            android:text="@string/by_creating_an_account" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="17dp"
+            android:layout_marginTop="3dp"
+            android:onClick="terms_on_condition"
+            android:fontFamily="@font/lato_regular"
+            android:textColor="@color/colorPrimary"
+            android:text="@string/team_conditions"
+            tools:ignore="OnClick" />
+
+</LinearLayout>

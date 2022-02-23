@@ -3,11 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/drawable/rounded_corner_button.xml" value="0.2203125" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/drawable/rounded_grey_bg_button.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/drawable/rounded_white_bg_button.xml" value="0.18645833333333334" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_create_account.xml" value="0.18" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_create_loan.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_protect.xml" value="0.15" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_register_mobile_number.xml" value="0.18" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_terms_condition.xml" value="0.18" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_verify.xml" value="0.2" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/add_item.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/documents_upload.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/item_detail.xml" value="0.22" />
+        <entry key="..\:/Users/User/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/item_details.xml" value="0.18" />
         <entry key="..\:/Users/user/AndroidStudioProjects/MyPawnShop/app/src/main/res/layout/activity_main.xml" value="0.33541666666666664" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_15" project-jdk-name="15" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
