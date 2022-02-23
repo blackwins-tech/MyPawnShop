@@ -41,6 +41,7 @@
         android:orientation="horizontal">
 
         <EditText
+            android:id="@+id/firstDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -51,6 +52,7 @@
             android:inputType="number" />
 
         <EditText
+            android:id="@+id/secondDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -61,6 +63,7 @@
             android:inputType="number" />
 
         <EditText
+            android:id="@+id/thirdDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -71,6 +74,7 @@
             android:inputType="number" />
 
         <EditText
+            android:id="@+id/fourthDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -96,7 +100,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/refirstDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -107,7 +111,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/resecondDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -118,7 +122,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/rethirdDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -129,7 +133,7 @@
             android:inputType="number" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/refourthDigit"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -141,7 +145,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/submitotpbtn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"

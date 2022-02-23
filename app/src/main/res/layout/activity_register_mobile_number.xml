@@ -28,14 +28,14 @@
         android:text="@string/mob_no" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/RegMob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato_regular"
         android:hint="@string/enter_mob_no"
-        android:inputType="textPersonName"
+        android:inputType="number"
         />
 
     <Button

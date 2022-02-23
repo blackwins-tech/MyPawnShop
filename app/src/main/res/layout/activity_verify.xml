@@ -18,12 +18,12 @@
         android:textSize="20dp"/>
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/sentNumberedTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:fontFamily="@font/lato_regular"
-        android:text="We have sent a OTP to +91892949824" />
+        android:text="@string/sent_to_this_number" />
 
     <TextView
         android:id="@+id/textView6"
@@ -51,7 +51,7 @@
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editTextTextPersonName2"
+            android:id="@+id/otp_digit_01"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -63,7 +63,7 @@
             />
 
         <EditText
-            android:id="@+id/editTextTextPersonName3"
+            android:id="@+id/otp_digit_02"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -75,7 +75,7 @@
              />
 
         <EditText
-            android:id="@+id/editTextTextPersonName4"
+            android:id="@+id/otp_digit_03"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -87,7 +87,29 @@
              />
 
         <EditText
-            android:id="@+id/editTextTextPersonName5"
+            android:id="@+id/otp_digit_04"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/otp_digit_05"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:fontFamily="@font/lato_regular"
+            android:gravity="center"
+            android:hint="0"
+            android:inputType="number"
+            />
+        <EditText
+            android:id="@+id/otp_digit_06"
             android:layout_width="wrap_content"
             android:layout_height="60dp"
             android:layout_weight="1"
@@ -117,5 +139,13 @@
         android:textSize="18dp"
         android:fontFamily="@font/lato_regular"
         android:text="@string/plz_ensure" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible" />
+
 
 </LinearLayout>

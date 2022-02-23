@@ -35,14 +35,15 @@
         android:text="@string/enter_ur_name" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/owner_account_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-         android:ems="10"
-        android:gravity="left"
+        android:ems="10"
         android:fontFamily="@font/lato_regular"
+        android:gravity="left"
         android:hint="@string/enter_ur_name"
-        android:inputType="number" />
+        android:inputType="text"
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/button4"
@@ -67,16 +68,17 @@
             android:textColor="@color/black"
             android:text="@string/by_creating_an_account" />
 
-        <TextView
-            android:id="@+id/textView16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="17dp"
-            android:layout_marginTop="3dp"
-            android:onClick="terms_on_condition"
-            android:fontFamily="@font/lato_regular"
-            android:textColor="@color/colorPrimary"
-            android:text="@string/team_conditions"
-            tools:ignore="OnClick" />
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:fontFamily="@font/lato_regular"
+        android:minHeight="48dp"
+        android:onClick="terms_on_condition"
+        android:text="@string/team_conditions"
+        android:textColor="@color/colorPrimary"
+        android:textSize="17dp"
+        tools:ignore="OnClick" />
 
 </LinearLayout>

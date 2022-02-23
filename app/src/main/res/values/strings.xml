@@ -55,4 +55,6 @@
     <string name="enter_description">Enter Description</string>
     <string name="upload">Upload</string>
     <string name="save">Save</string>
+
+    <string name="sent_to_this_number">We have sent a OTP to +91 XXXXXXXX</string>
 </resources>
