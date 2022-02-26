@@ -55,6 +55,13 @@
     <string name="enter_description">Enter Description</string>
     <string name="upload">Upload</string>
     <string name="save">Save</string>
+    <string name="TestButton">TestButton</string>
 
     <string name="sent_to_this_number">We have sent a OTP to +91 XXXXXXXX</string>
+    <string name="title_activity_dashboard">Dashboard</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_search">Search</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="title_estimation">Estimate</string>
 </resources>

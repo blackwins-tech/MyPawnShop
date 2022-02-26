@@ -3,6 +3,8 @@ package com.bwt.mypawnshop;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,9 +33,10 @@ public class verify extends AppCompatActivity {
     ShopOwnerInfo ownerInfo;
     String verificationCodeBySystem;
     private FirebaseAuth mAuth;
-    //ProgressBar progressBar;
+    ProgressBar progressBar;
     Button submitOTP;
-    EditText otpDigit01,otpDigit02,otpDigit03,otpDigit04,otpDigit05,otpDigit06;
+    EditText otpDigit01;
+    //otpDigit02,otpDigit03,otpDigit04,otpDigit05,otpDigit06;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,42 +44,54 @@ public class verify extends AppCompatActivity {
         setContentView(R.layout.activity_verify);
         sentNumberedTextView = (TextView) findViewById(R.id.sentNumberedTextView);
         otpDigit01 = (EditText)findViewById(R.id.otp_digit_01);
-        otpDigit02 = (EditText)findViewById(R.id.otp_digit_02);
+        /*otpDigit02 = (EditText)findViewById(R.id.otp_digit_02);
         otpDigit03 = (EditText)findViewById(R.id.otp_digit_03);
         otpDigit04 = (EditText)findViewById(R.id.otp_digit_04);
         otpDigit05 = (EditText)findViewById(R.id.otp_digit_05);
-        otpDigit06 = (EditText)findViewById(R.id.otp_digit_06);
+        otpDigit06 = (EditText)findViewById(R.id.otp_digit_06);*/
         ownerInfo = (ShopOwnerInfo) getIntent().getSerializableExtra("ownerInfoObject");
-        //progressBar = findViewById(R.id.progressBar);
-        String temp = ownerInfo.getUser_mob_no();
-        regmob = "+910"+ temp;
+        progressBar = findViewById(R.id.progressBar);
+        regmob = ownerInfo.getUser_mob_no();
         // Initialize Firebase Auth
-        //mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
         Log.i(TAG, "onCreate Invoked");
         sentNumberedTextView.setText("We have sent a OTP to" +" "+  regmob);
+        sendVerificationCodeToUser(regmob);
         submitOTP = (Button) findViewById(R.id.button2);
         submitOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i(TAG, "submitOTP button clicked..");
                 submit_otp(view);
+                //For checking the create post API
+                /*ownerInfo.setOtp_verification("verified");
+                Intent intent = new Intent(verify.this, Protect.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra ("ownerInfoObject", ownerInfo);
+                startActivity(intent);*/
             }
         });
     }
 
     public void submit_otp(View view) {
-        //sendVerificationCodeToUser(regmob);
         Log.i(TAG, "submit_otp Invoked");
-        verifyTheOTPCode();
-        startActivity(new Intent(verify.this, Protect.class));
+        String enteredCode = verifyEnteredOTPCode();
+        if(enteredCode.isEmpty() || enteredCode.length() <6) {
+            ShowAlertDialog("Error" , "Enter valid Code");
+            otpDigit01.requestFocus();
+            return;
+        }
+        verifyCode(enteredCode);
+        //startActivity(new Intent(verify.this, Protect.class));
     }
 
-    private void verifyTheOTPCode() {
-        String fullOTPDigit = otpDigit01.getText().toString()+otpDigit02.getText().toString()+otpDigit03.getText().toString()+otpDigit04.getText().toString()+otpDigit05.getText().toString()+otpDigit06.getText().toString();
-        Toast.makeText(verify.this, fullOTPDigit, Toast.LENGTH_LONG).show();
+    private String verifyEnteredOTPCode() {
+        String fullOTPDigit = otpDigit01.getText().toString();
+        //Toast.makeText(verify.this, fullOTPDigit, Toast.LENGTH_LONG).show();
+        return fullOTPDigit;
     }
 
-    /*private void sendVerificationCodeToUser(String regmob) {
+    private void sendVerificationCodeToUser(String regmob) {
         Log.i(TAG, "sendVerificationCodeToUser started..");
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(mAuth)
@@ -107,7 +122,7 @@ public class verify extends AppCompatActivity {
                 Log.i(TAG, "onVerificationCompleted invoking...");
                 //Toast.makeText(verify.this, code, Toast.LENGTH_LONG).show();
                 if(code !=null){
-
+                    otpDigit01.setText(code);
                     verifyCode(code);
                 }
          }
@@ -130,7 +145,9 @@ public class verify extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                     if(task.isSuccessful()){
-                        Log.i(TAG, "onComplete invoking...");
+                        Log.i(TAG, "Verified...");
+                        //ShowAlertDialog("Confirmation", "Mobile Verified");
+                        ownerInfo.setOtp_verification("verified");
                         Intent intent = new Intent(verify.this, Protect.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.putExtra ("ownerInfoObject", ownerInfo);
@@ -141,6 +158,71 @@ public class verify extends AppCompatActivity {
             }
         });
 
-    }*/
+    }
+
+    private void ShowAlertDialog(String MessageTitle, String MessageText) {
+
+        AlertDialog.Builder builder = new AlertDialog
+                .Builder(verify.this);
+
+        // Set the message show for the Alert time
+        builder.setMessage(MessageText);
+
+        // Set Alert Title
+        builder.setTitle(MessageTitle);
+
+        // Set Cancelable false
+        // for when the user clicks on the outside
+        // the Dialog Box then it will remain show
+        builder.setCancelable(false);
+
+        // Set the positive button with yes name
+        // OnClickListener method is use of
+        // DialogInterface interface.
+
+        builder
+                .setPositiveButton(
+                        "OK",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // When the user click yes button
+                                // then app will close
+                                //finish();
+                                dialog.cancel();
+                            }
+                        });
+
+        // Set the Negative button with No name
+        // OnClickListener method is use
+        // of DialogInterface interface.
+        /*builder
+                .setNegativeButton(
+                        "No",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // If user click no
+                                // then dialog box is canceled.
+                                dialog.cancel();
+                            }
+                        });*/
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+
+        // Show the Alert Dialog box
+        alertDialog.show();
+    }
 
 }

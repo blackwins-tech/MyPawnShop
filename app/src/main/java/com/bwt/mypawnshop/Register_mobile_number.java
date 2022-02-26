@@ -3,6 +3,9 @@ package com.bwt.mypawnshop;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,7 +34,7 @@ public class Register_mobile_number extends AppCompatActivity {
     String verificationCodeBySystem;
     private FirebaseAuth mAuth;
     ProgressBar progressBar;
-    Button receiveOTP;
+    Button receiveOTP, TestButton;
     ShopOwnerInfo ownerInfo;
 
     {
@@ -45,97 +48,113 @@ public class Register_mobile_number extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_mobile_number);
         RegMob = (EditText) findViewById(R.id.RegMob);
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
         Log.i(TAG, "onCreate Invoked");
         receiveOTP = (Button) findViewById(R.id.button);
+        TestButton = (Button) findViewById(R.id.TestButton);
+
         receiveOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Log.i(TAG, "receiveOTP button clicked..");
-                String RegMobNumber = RegMob.getText().toString();
-                ownerInfo = new ShopOwnerInfo();
-                ownerInfo.setUser_mob_no(RegMobNumber);
-                regmob = "+910"+ RegMobNumber;
-                //Log.i(TAG, regmob + "receiveOTP Invoked");
-                recieve_otp(view);
+                String RegMobNumber = RegMob.getText().toString().trim();
+                if(RegMobNumber.isEmpty() || RegMobNumber.length() <10){
+                    ShowAlertDialog("Error" , "Mobile Number Should not be empty");
+                    return;
+                }else{
+                    ownerInfo = new ShopOwnerInfo();
+                    regmob = "+910"+ RegMobNumber;
+                    ownerInfo.setUser_mob_no(regmob);
+                    recieve_otp(view);
+                }
+
+            }
+        });
+
+
+        TestButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(Register_mobile_number.this, create_loan.class));
             }
         });
     }
 
     public void recieve_otp(View view) {
-        sendVerificationCodeToUser(regmob);
         Log.i(TAG, regmob + "recieve_otp Invoked");
-
+        Intent intent = new Intent(Register_mobile_number.this, verify.class);
+        intent.putExtra("ownerInfoObject", ownerInfo);
+        startActivity(intent);
         //startActivity(new Intent(Register_mobile_number.this, verify.class));
     }
 
-    private void sendVerificationCodeToUser(String regmob) {
-        Log.i(TAG, "sendVerificationCodeToUser started..");
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(regmob)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // Activity (for callback binding)
-                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
-        Log.i(TAG, "sendVerificationCodeToUser ended...");
-        //progressBar.setVisibility(View.VISIBLE);
 
+    private void ShowAlertDialog(String MessageTitle, String MessageText) {
+
+        AlertDialog.Builder builder
+                = new AlertDialog
+                .Builder(Register_mobile_number.this);
+
+        // Set the message show for the Alert time
+        builder.setMessage(MessageText);
+
+        // Set Alert Title
+        builder.setTitle(MessageTitle);
+
+        // Set Cancelable false
+        // for when the user clicks on the outside
+        // the Dialog Box then it will remain show
+        builder.setCancelable(false);
+
+        // Set the positive button with yes name
+        // OnClickListener method is use of
+        // DialogInterface interface.
+
+        builder
+                .setPositiveButton(
+                        "OK",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // When the user click yes button
+                                // then app will close
+                                //finish();
+                                dialog.cancel();
+                            }
+                        });
+
+        // Set the Negative button with No name
+        // OnClickListener method is use
+        // of DialogInterface interface.
+        /*builder
+                .setNegativeButton(
+                        "No",
+                        new DialogInterface
+                                .OnClickListener() {
+
+                            @Override
+                            public void onClick(DialogInterface dialog,
+                                                int which)
+                            {
+
+                                // If user click no
+                                // then dialog box is canceled.
+                                dialog.cancel();
+                            }
+                        });*/
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+
+        // Show the Alert Dialog box
+        alertDialog.show();
     }
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
 
-
-        @Override
-        public void onCodeSent(@NonNull String s, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
-            super.onCodeSent(s, forceResendingToken);
-            verificationCodeBySystem = s;
-            //progressBar.setVisibility(View.INVISIBLE);
-            Log.i(TAG, "onCodeSent invoking...");
-        }
-
-        @Override
-        public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-            String code = phoneAuthCredential.getSmsCode();
-            Log.i(TAG, "onVerificationCompleted invoking...");
-            //Toast.makeText(verify.this, code, Toast.LENGTH_LONG).show();
-            if(code !=null){
-                verifyCode(code);
-            }
-        }
-
-        @Override
-        public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(Register_mobile_number.this, e.getMessage(), Toast.LENGTH_LONG).show();
-        }
-    };
-    private void verifyCode(String codeByUser) {
-        Log.i(TAG, "verifyCode invoking...");
-        PhoneAuthCredential phoneAuthCredential = PhoneAuthProvider.getCredential(verificationCodeBySystem, codeByUser);
-        signInTheUserByCredentials(phoneAuthCredential);
-    }
-
-    private void signInTheUserByCredentials(PhoneAuthCredential phoneAuthCredential) {
-        Log.i(TAG, "signInTheUserByCredentials invoking...");
-        mAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(Register_mobile_number.this, new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    Log.i(TAG, "onComplete invoking...");
-                    String RegMobNumber = RegMob.getText().toString();
-                    ShopOwnerInfo ownerInfo = new ShopOwnerInfo();
-                    ownerInfo.setUser_mob_no(RegMobNumber);
-                    Intent intent = new Intent(Register_mobile_number.this, verify.class);
-                    intent.putExtra ("ownerInfoObject", ownerInfo);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(Register_mobile_number.this, task.getException().getMessage(), Toast.LENGTH_LONG).show();
-                }
-            }
-        });
-
-    }
 }

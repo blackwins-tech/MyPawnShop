@@ -57,4 +57,14 @@
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/black"
         android:text="@string/plz_give" />
+
+    <Button
+        android:id="@+id/TestButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:onClick="recieve_otp"
+        android:background="@drawable/rounded_corner_button"
+        android:fontFamily="@font/lato_regular"
+        android:text="@string/TestButton" />
 </LinearLayout>

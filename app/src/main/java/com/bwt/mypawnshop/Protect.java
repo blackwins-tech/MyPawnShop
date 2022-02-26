@@ -22,7 +22,7 @@ public class Protect extends AppCompatActivity {
         setContentView(R.layout.activity_protect);
 
         ownerInfo = (ShopOwnerInfo) getIntent().getSerializableExtra("ownerInfoObject");
-
+        Toast.makeText(this, ownerInfo.getOtp_verification(), Toast.LENGTH_LONG).show();
         firtDigitno = (EditText) findViewById(R.id.firstDigit);
         secondDigitno = (EditText) findViewById(R.id.secondDigit);
         thirdDigitno = (EditText) findViewById(R.id.thirdDigit);
@@ -51,6 +51,6 @@ public class Protect extends AppCompatActivity {
         Intent intent = new Intent(Protect.this, create_account.class);
         intent.putExtra ("ownerInfoObject", ownerInfo);
         startActivity(intent);
-       // startActivity(new Intent(Protect.this, create_account.class));
+        finish();
     }
 }

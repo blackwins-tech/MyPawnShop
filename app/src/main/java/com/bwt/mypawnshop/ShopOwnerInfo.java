@@ -2,6 +2,7 @@ package com.bwt.mypawnshop;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 public class ShopOwnerInfo implements Serializable {
     public int user_id;
@@ -9,7 +10,8 @@ public class ShopOwnerInfo implements Serializable {
     public String user_mob_no;
     public String user_mpin;
     public String user_name;
-    public String user_created_at;
+    public String otp_verification;
+    public Date user_created_at;
 
     public int getUser_id() {
         return user_id;
@@ -51,13 +53,33 @@ public class ShopOwnerInfo implements Serializable {
         this.user_name = user_name;
     }
 
-    public String getUser_created_at() {
+    public Date getUser_created_at() {
         return user_created_at;
     }
 
-    public void setUser_created_at(String user_created_at) {
+    public void setUser_created_at(Date user_created_at) {
         this.user_created_at = user_created_at;
     }
 
+    public String getOtp_verification() {
+        return otp_verification;
+    }
+
+    public void setOtp_verification(String otp_verification) {
+        this.otp_verification = otp_verification;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopOwnerInfo{" +
+                "user_id=" + user_id +
+                ", user_app_lang='" + user_app_lang + '\'' +
+                ", user_mob_no='" + user_mob_no + '\'' +
+                ", user_mpin='" + user_mpin + '\'' +
+                ", user_name='" + user_name + '\'' +
+                ", otp_verification='" + otp_verification + '\'' +
+                ", user_created_at=" + user_created_at +
+                '}';
+    }
 
 }
