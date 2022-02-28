@@ -1,6 +1,9 @@
 package com.bwt.mypawnshop;
 
-public class CustomerInfo {
+import java.io.Serializable;
+import java.sql.Date;
+
+public class CustomerInfo implements Serializable {
     public String cus_name;
     public String cus_mob_1;
     public String cus_mob_2;
@@ -14,7 +17,7 @@ public class CustomerInfo {
     public String cus_pan_back;
     public String cus_other_proof1;
     public String cus_other_proof2;
-    public String cus_created_at;
+    public Date cus_created_at;
     public int user_id;
 
     public String getCus_name() {
@@ -121,11 +124,11 @@ public class CustomerInfo {
         this.cus_other_proof2 = cus_other_proof2;
     }
 
-    public String getCus_created_at() {
+    public Date getCus_created_at() {
         return cus_created_at;
     }
 
-    public void setCus_created_at(String cus_created_at) {
+    public void setCus_created_at(Date cus_created_at) {
         this.cus_created_at = cus_created_at;
     }
 

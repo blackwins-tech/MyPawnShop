@@ -14,7 +14,12 @@
         android:fontFamily="@font/lato_regular"
         android:text="Aadhaar Card" />
 
-
+    <ImageView
+        android:id="@+id/AadhaarImage"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="fitCenter"
+        app:srcCompat="@drawable/ic_menu_gallery" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -32,12 +37,12 @@
             app:srcCompat="@drawable/ic_launcher_foreground" />
 
         <TextView
-            android:id="@+id/textView28"
+            android:id="@+id/aadharBrowseClick"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/lato_regular"
-            android:text="@string/upload"
+            android:text="@string/browse"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
@@ -71,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/lato_regular"
-            android:text="@string/upload"
+            android:text="@string/browse"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
@@ -105,7 +110,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/lato_regular"
-            android:text="@string/upload"
+            android:text="@string/browse"
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
+    <Button
+        android:id="@+id/SaveBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:text="@string/upload"
+        />
 </LinearLayout>

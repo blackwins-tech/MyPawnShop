@@ -6,11 +6,18 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class create_loan extends AppCompatActivity {
     EditText CusName, CusPrimaryMobileNo, cusDOB,cusAddress;
@@ -49,10 +56,14 @@ public class create_loan extends AppCompatActivity {
             selectedRBText = selectedRadioButton.getText().toString();
         }
         customerObject.setCus_gender(selectedRBText);
-        startActivity(new Intent(create_loan.this, Dashboard.class));
+       // startActivity(new Intent(create_loan.this, DocumentsUpload.class));
         //ShowAlertDialog("Confirmation" , customerObject.toString());
-        //POST API
+        Intent intent = new Intent(create_loan.this, DocumentsUpload.class);
+        intent.putExtra ("newCustomerInfo", customerObject);
+        startActivity(intent);
     }
+
+
 
     private void ShowAlertDialog(String MessageTitle, String MessageText) {
 
