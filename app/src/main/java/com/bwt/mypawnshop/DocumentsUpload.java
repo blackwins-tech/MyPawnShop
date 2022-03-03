@@ -11,8 +11,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -53,6 +56,7 @@ public class DocumentsUpload extends AppCompatActivity {
     String storagePermission[];
     CustomerInfo newCustomerInfo;
     Button saveBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,12 +102,19 @@ public class DocumentsUpload extends AppCompatActivity {
                 call.enqueue(new Callback<CustomerInfo>() {
                     @Override
                     public void onResponse(Call<CustomerInfo> call, Response<CustomerInfo> response) {
-                        Toast.makeText(DocumentsUpload.this, response.code(), Toast.LENGTH_LONG).show();
+                        //Toast.makeText(DocumentsUpload.this, response.code(), Toast.LENGTH_LONG).show();
+                        if(response.isSuccessful()){
+                            Log.i(TAG, String.valueOf(response.code()));
+                            Intent intent = new Intent(DocumentsUpload.this, CreateItem.class);
+                            startActivity(intent);
+                        }
                     }
 
                     @Override
                     public void onFailure(Call<CustomerInfo> call, Throwable t) {
                         Toast.makeText(DocumentsUpload.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        Intent intent = new Intent(DocumentsUpload.this, CreateItem.class);
+                        startActivity(intent);
                     }
                 });
             }
@@ -149,6 +160,7 @@ public class DocumentsUpload extends AppCompatActivity {
             CropImage.ActivityResult result = CropImage.getActivityResult(data);
             if(resultCode == RESULT_OK){
                 Uri resultUri = result.getUri();
+                aadharcardImage.setVisibility(View.VISIBLE);
                 Picasso.with(this).load(resultUri).into(aadharcardImage);
                 MediaManager.get().upload(resultUri).callback(new UploadCallback() {
                     @Override
@@ -168,6 +180,15 @@ public class DocumentsUpload extends AppCompatActivity {
                         java.sql.Date date=new java.sql.Date(millis);
                         newCustomerInfo.setCus_created_at(date);
                         newCustomerInfo.setCus_aadhar_front((String) resultData.get("secure_url"));
+                        newCustomerInfo.setCus_aadhar_back("http://");
+                        newCustomerInfo.setCus_other_proof1("http://");
+                        newCustomerInfo.setCus_other_proof2("http://");
+                        newCustomerInfo.setCus_pan_front("http://");
+                        newCustomerInfo.setCus_pan_back("http://");
+                        newCustomerInfo.setCus_mob_2("NA");
+                        newCustomerInfo.setUser_id(1);
+
+                        Log.i(TAG, "customerObject:"+newCustomerInfo.toString());
                         ShowAlertDialog("Confirmation" , "Uploaded Successfully..");
                     }
 
@@ -290,18 +311,26 @@ public class DocumentsUpload extends AppCompatActivity {
             JSONObject jsonObj_ = new JSONObject();
             jsonObj_.put("cus_name", newCustomerInfo.getCus_name());
             jsonObj_.put("cus_mob_1", newCustomerInfo.getCus_mob_1());
+            jsonObj_.put("cus_mob_2", newCustomerInfo.getCus_mob_2());
             jsonObj_.put("cus_gender",newCustomerInfo.getCus_gender());
             jsonObj_.put("cus_dob", newCustomerInfo.getCus_dob());
             jsonObj_.put("cus_marital_status", newCustomerInfo.getCus_marital_status());
             jsonObj_.put("cus_address", newCustomerInfo.getCus_address());
             jsonObj_.put("cus_aadhar_front", newCustomerInfo.getCus_aadhar_front());
+            jsonObj_.put("cus_aadhar_back", newCustomerInfo.getCus_aadhar_back());
+            jsonObj_.put("cus_pan_front", newCustomerInfo.getCus_pan_front());
+            jsonObj_.put("cus_pan_back", newCustomerInfo.getCus_pan_back());
+            jsonObj_.put("cus_other_proof1", newCustomerInfo.getCus_other_proof1());
+            jsonObj_.put("cus_other_proof2", newCustomerInfo.getCus_other_proof2());
+            jsonObj_.put("cus_created_at", newCustomerInfo.getCus_created_at());
+            jsonObj_.put("user_id", newCustomerInfo.getUser_id());
 
 
             JsonParser jsonParser = new JsonParser();
             gsonObject = (JsonObject) jsonParser.parse(jsonObj_.toString());
 
             //print parameter
-            Log.e("MY gson.JSON:  ", "AS PARAMETER  " + gsonObject);
+            Log.i("MY gson.JSON:  ", "AS PARAMETER  " + gsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -309,4 +338,6 @@ public class DocumentsUpload extends AppCompatActivity {
 
         return gsonObject;
     }
+
+
 }

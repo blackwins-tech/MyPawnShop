@@ -3,12 +3,15 @@ package com.bwt.mypawnshop;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 public class Protect extends AppCompatActivity {
+    private static final String TAG = "MYPAWNSHOP_LOG";
     EditText firtDigitno, secondDigitno, thirdDigitno, fourthDigitno;
     EditText refirtDigitno, resecondDigitno, rethirdDigitno, refourthDigitno;
     String mPin, confirm_mPin;
@@ -43,14 +46,27 @@ public class Protect extends AppCompatActivity {
         if(mPin.equals(confirm_mPin)) {
             //mPin_in_number = Integer.parseInt(mPin);
             ownerInfo.setUser_mpin(mPin);
+
+            // Storing data into SharedPreferences
+            SharedPreferences sharedPreferences = getSharedPreferences("MyPawnShopPreferences",MODE_PRIVATE);
+            // Creating an Editor object to edit(write to the file)
+            SharedPreferences.Editor myEdit = sharedPreferences.edit();
+            // Storing the key and its value as the data fetched from edittext
+            myEdit.putString("mobile number", ownerInfo.getUser_mob_no());
+            myEdit.putInt("mPin", Integer.parseInt(mPin));
+            myEdit.putString("isAlreadyLogin","yes");
+            myEdit.apply();
+            myEdit.commit();
+            Log.i(TAG,sharedPreferences.getString("isAlreadyLogin", ""));
+            Intent intent = new Intent(Protect.this, create_account.class);
+            intent.putExtra ("ownerInfoObject", ownerInfo);
+            startActivity(intent);
+            finish();
             //Toast.makeText(this, "pin matched", Toast.LENGTH_LONG).show();
         }else{
             // show the error message of mismatched
             Toast.makeText(this, "pin mismatch try again", Toast.LENGTH_LONG).show();
         }
-        Intent intent = new Intent(Protect.this, create_account.class);
-        intent.putExtra ("ownerInfoObject", ownerInfo);
-        startActivity(intent);
-        finish();
+
     }
 }

@@ -66,7 +66,7 @@ public class create_account extends AppCompatActivity {
             gsonObject = (JsonObject) jsonParser.parse(jsonObj_.toString());
 
             //print parameter
-            Log.e("MY gson.JSON:  ", "AS PARAMETER  " + gsonObject);
+            Log.i("MY gson.JSON:  ", "AS PARAMETER  " + gsonObject);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -90,15 +90,17 @@ public class create_account extends AppCompatActivity {
              call.enqueue(new Callback<ShopOwnerInfo>() {
                  @Override
                  public void onResponse(Call<ShopOwnerInfo> call, Response<ShopOwnerInfo> response) {
-                     Toast.makeText(create_account.this, response.code(), Toast.LENGTH_LONG).show();
-                     Intent intent = new Intent(create_account.this, create_loan.class);
-                     intent.putExtra ("ownerInfoObject", ownerInfo);
+                     //Toast.makeText(create_account.this, response.code(), Toast.LENGTH_LONG).show();
+                     Log.i(TAG, "OnResponse"+response.code());
+                     Intent intent = new Intent(create_account.this, NavigationActivity.class);
+                     //intent.putExtra ("ownerInfoObject", ownerInfo);
                      startActivity(intent);
                  }
 
                  @Override
                  public void onFailure(Call<ShopOwnerInfo> call, Throwable t) {
-                     Toast.makeText(create_account.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    //Toast.makeText(create_account.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                     Log.i(TAG,"onFailure"+ t.getMessage());
                  }
              });
 

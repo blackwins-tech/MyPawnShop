@@ -13,7 +13,12 @@ public class PawnShopRetrofitClient {
     private static String PAWN_SHOP_URL = "https://lendingappbackend.herokuapp.com/";
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
-    private static Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
+    private static Gson gson;
+
+    static {
+        gson = new GsonBuilder().setLenient().setDateFormat("yyyy-MM-dd").create();
+    }
+
     public static Retrofit getRetrofitInstance() {
         if(pawnShopRetrofitClient == null){
             pawnShopRetrofitClient = new Retrofit.Builder()
