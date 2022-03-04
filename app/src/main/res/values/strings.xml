@@ -44,10 +44,10 @@
     <string name="item_id">Item ID</string>
     <string name="item_weight">Item Weight</string>
     <string name="item_name">Item Name</string>
-    <string name="item_qty">Item Quantity</string>
+    <string name="item_qty">Item Quality</string>
     <string name="item_market_value">Item Market Value</string>
-    <string name="item_keeping_unit">Item Keeping Unit</string>
-    <string name="item_description">item Description</string>
+    <string name="item_keeping_unit">Item Keeping Unit   (optional)</string>
+    <string name="item_description">item Description  (optional)</string>
     <string name="enter_item_name">Enter Item Name</string>
     <string name="selct_item_qty">Select Item Quantity</string>
     <string name="ebitem_market_value">Item Market Value</string>
@@ -89,6 +89,9 @@
     <string name="spinner_prompt">Select gram</string>
 <string name="InterestAmount">InterestAmount</string>
     <string name="InterestType">InterestType</string>
-
+<string name="SelectMonth">Interest Period in (Months) </string>
     <string name="interest_spinner_prompt">Select type</string>
+
+    <!-- Item -->
+
 </resources>

@@ -35,7 +35,7 @@
                 android:text="@string/item_name" />
 
             <EditText
-                android:id="@+id/editTextTextPersonName12"
+                android:id="@+id/itemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -54,6 +54,7 @@
                 android:text="@string/item_weight" />
 
             <EditText
+                android:id="@+id/itemWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -72,6 +73,7 @@
                 android:text="@string/item_qty" />
 
             <Spinner
+                android:id="@+id/itemQuality"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -79,9 +81,7 @@
                 android:inputType="textPersonName"
                 android:minHeight="48dp"
                 tools:ignore="SpeakableTextPresentCheck" />
-
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
@@ -90,6 +90,7 @@
                 android:text="@string/item_market_value" />
 
             <EditText
+                android:id="@+id/itemMarketValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -107,14 +108,15 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/item_keeping_unit" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/itemKeepingUnit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:fontFamily="@font/lato_regular"
-                android:hint="@string/enter_item_keeping_unit"
                 android:inputType="textPersonName"
-                android:minHeight="48dp" />
+                android:minHeight="48dp"
+                tools:ignore="SpeakableTextPresentCheck" />
 
             <TextView
 
@@ -126,6 +128,7 @@
                 android:text="@string/item_description" />
 
             <EditText
+                android:id="@+id/itemDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -141,7 +144,13 @@
                 android:layout_marginLeft="4dp"
                 android:fontFamily="@font/lato_regular"
                 android:text="110/120" />
-
+            <ImageView
+                android:id="@+id/ItemImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="fitCenter"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_menu_gallery" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -159,7 +168,7 @@
                     app:srcCompat="@drawable/ic_baseline_cloud_upload_24dp" />
 
                 <TextView
-                    android:id="@+id/textView28"
+                    android:id="@+id/itemImageUpload"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -168,8 +177,14 @@
                     android:textColor="@color/colorPrimary" />
             </LinearLayout>
 
+            <ProgressBar
+                android:id="@+id/imageUploadProgressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/ItemSaveBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -177,6 +192,7 @@
                 android:fontFamily="@font/lato_regular"
                 android:text="@string/save"
                 android:textAllCaps="false" />
+
         </LinearLayout>
 
     </ScrollView>

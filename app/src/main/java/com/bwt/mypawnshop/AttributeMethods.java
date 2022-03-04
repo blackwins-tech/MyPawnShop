@@ -28,4 +28,7 @@ public interface AttributeMethods {
 
     @POST("api/customer")
     Call<CustomerInfo> postCustomerInfo(@Body JsonObject shopOwnerInfo);
+
+    @POST("api/itemsets")
+    Call<ItemSet> postItemSetsInfo(@Body JsonObject itemSets);
 }

@@ -105,7 +105,7 @@ public class DocumentsUpload extends AppCompatActivity {
                         //Toast.makeText(DocumentsUpload.this, response.code(), Toast.LENGTH_LONG).show();
                         if(response.isSuccessful()){
                             Log.i(TAG, String.valueOf(response.code()));
-                            Intent intent = new Intent(DocumentsUpload.this, CreateItem.class);
+                            Intent intent = new Intent(DocumentsUpload.this, Itemdetails.class);
                             startActivity(intent);
                         }
                     }
@@ -113,7 +113,7 @@ public class DocumentsUpload extends AppCompatActivity {
                     @Override
                     public void onFailure(Call<CustomerInfo> call, Throwable t) {
                         Toast.makeText(DocumentsUpload.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(DocumentsUpload.this, CreateItem.class);
+                        Intent intent = new Intent(DocumentsUpload.this, Itemdetails.class);
                         startActivity(intent);
                     }
                 });

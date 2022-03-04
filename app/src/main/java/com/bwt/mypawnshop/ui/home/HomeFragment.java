@@ -90,34 +90,21 @@ public class HomeFragment extends Fragment {
                     float interestAmountPerMonth = (float) (eligibleAmount*0.02);
                     interestAmount.setText(String.valueOf(interestAmountPerMonth));
                     processingChargesText.setText("2%(0.02)");
-                    /*float tempCharges =eligibleAmount* ApplicationConstant.PROCESSING_CHARGES;
-                    float total_loan_amount = eligibleAmount - tempCharges;
-                    totalLoanAmountText.setText(String.valueOf(total_loan_amount));*/
 
                 }else if(selectedInterestType.equals("Deluxe (5%)")){
                     float eligibleAmount = Float.parseFloat(total_eligible_amount_price.getText().toString());
                     float interestAmountPerMonth = (float) (eligibleAmount*0.05);
                     interestAmount.setText(String.valueOf(interestAmountPerMonth));
                     processingChargesText.setText("2%(0.02)");
-                    /*float tempCharges =eligibleAmount* ApplicationConstant.PROCESSING_CHARGES;
-                    float total_loan_amount = eligibleAmount - tempCharges;
-                    totalLoanAmountText.setText(String.valueOf(total_loan_amount));*/
 
                 }else if(selectedInterestType.equals("Premimum (10%)")){
                     float eligibleAmount = Float.parseFloat(total_eligible_amount_price.getText().toString());
                     float interestAmountPerMonth = (float) (eligibleAmount*0.1);
                     interestAmount.setText(String.valueOf(interestAmountPerMonth));
                     processingChargesText.setText("2%(0.02)");
-                    /*float tempCharges =eligibleAmount* ApplicationConstant.PROCESSING_CHARGES;
-                    float total_loan_amount = eligibleAmount - tempCharges;
-                    totalLoanAmountText.setText(String.valueOf(total_loan_amount));*/
-
                 }else{
                     // do nothing
                 }
-                /*float calculatedGram = (float)selectedGram* ApplicationConstant.OWNER_GOLD_PRICE_PER_GRAM;
-                total_eligible_amount_price.setText(String.valueOf(calculatedGram));*/
-                //Toast.makeText(parent.getContext(), "Selected: " + selectedGram, Toast.LENGTH_LONG).show();
             }
             @Override
             public void onNothingSelected(AdapterView <?> parent) {
