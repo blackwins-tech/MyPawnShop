@@ -12,17 +12,17 @@
         android:id="@+id/textView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/register_your_mobile_no"
         android:fontFamily="@font/lato_bold"
-        android:textColor="@color/colorPrimary"
-        android:textSize="20dp"/>
+        android:text="@string/register_your_mobile_no"
+        android:textColor="#EF6C00"
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:textSize="17dp"
+        android:textSize="17sp"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/black"
         android:text="@string/mob_no" />
@@ -31,29 +31,33 @@
         android:id="@+id/RegMob"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:ems="10"
         android:fontFamily="@font/lato_regular"
         android:hint="@string/enter_mob_no"
+
         android:inputType="number"
-        />
+        android:minHeight="48dp" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:onClick="recieve_otp"
         android:background="@drawable/rounded_corner_button"
         android:fontFamily="@font/lato_regular"
-        android:text="@string/recieve_otp" />
+        android:onClick="recieve_otp"
+        android:text="@string/recieve_otp"
+        android:textColor="#4E342E"
+        tools:ignore="TextContrastCheck" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:fontFamily="@font/lato_regular"
         android:textColor="@color/black"
         android:text="@string/plz_give" />
@@ -63,8 +67,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
-        android:onClick="recieve_otp"
         android:background="@drawable/rounded_corner_button"
         android:fontFamily="@font/lato_regular"
-        android:text="@string/TestButton" />
+        android:onClick="recieve_otp"
+        android:text="@string/TestButton"
+        android:visibility="invisible" />
 </LinearLayout>

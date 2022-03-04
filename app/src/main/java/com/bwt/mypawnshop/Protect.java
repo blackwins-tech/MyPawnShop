@@ -17,15 +17,19 @@ public class Protect extends AppCompatActivity {
     String mPin, confirm_mPin;
     //int mPin_in_number;
     ShopOwnerInfo ownerInfo;
-
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor sh;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_protect);
-
         ownerInfo = (ShopOwnerInfo) getIntent().getSerializableExtra("ownerInfoObject");
         Toast.makeText(this, ownerInfo.getOtp_verification(), Toast.LENGTH_LONG).show();
+        // Storing data into SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPawnShopPreferences",MODE_PRIVATE);
+        // Creating an Editor object to edit(write to the file)
+        sh = sharedPreferences.edit();
         firtDigitno = (EditText) findViewById(R.id.firstDigit);
         secondDigitno = (EditText) findViewById(R.id.secondDigit);
         thirdDigitno = (EditText) findViewById(R.id.thirdDigit);
@@ -46,17 +50,14 @@ public class Protect extends AppCompatActivity {
         if(mPin.equals(confirm_mPin)) {
             //mPin_in_number = Integer.parseInt(mPin);
             ownerInfo.setUser_mpin(mPin);
-
-            // Storing data into SharedPreferences
-            SharedPreferences sharedPreferences = getSharedPreferences("MyPawnShopPreferences",MODE_PRIVATE);
-            // Creating an Editor object to edit(write to the file)
-            SharedPreferences.Editor myEdit = sharedPreferences.edit();
-            // Storing the key and its value as the data fetched from edittext
-            myEdit.putString("mobile number", ownerInfo.getUser_mob_no());
-            myEdit.putInt("mPin", Integer.parseInt(mPin));
-            myEdit.putString("isAlreadyLogin","yes");
-            myEdit.apply();
-            myEdit.commit();
+            if(sharedPreferences.getString("isAlreadyLogin", "").isEmpty()){
+                // Storing the key and its value as the data fetched from edittext
+                sh.putString("mobileNumber", ownerInfo.getUser_mob_no());
+                sh.putInt("mPin", Integer.parseInt(mPin));
+                sh.putString("isAlreadyLogin","yes");
+                sh.apply();
+                sh.commit();
+            }
             Log.i(TAG,sharedPreferences.getString("isAlreadyLogin", ""));
             Intent intent = new Intent(Protect.this, create_account.class);
             intent.putExtra ("ownerInfoObject", ownerInfo);

@@ -34,15 +34,11 @@ public class create_account extends AppCompatActivity {
     private static final String TAG = "MYPAWNSHOP_LOG";
     ShopOwnerInfo ownerInfo;
     EditText ownerAccountName;
-    Calendar calendar;
-    SimpleDateFormat simpledateformat;
-    String Date;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_account);
         ownerInfo = (ShopOwnerInfo) getIntent().getSerializableExtra("ownerInfoObject");
-        //Toast.makeText(this, ownerInfo.getOtp_verification(), Toast.LENGTH_LONG).show();
         ownerAccountName = (EditText) findViewById(R.id.owner_account_name);
     }
 
@@ -90,7 +86,6 @@ public class create_account extends AppCompatActivity {
              call.enqueue(new Callback<ShopOwnerInfo>() {
                  @Override
                  public void onResponse(Call<ShopOwnerInfo> call, Response<ShopOwnerInfo> response) {
-                     //Toast.makeText(create_account.this, response.code(), Toast.LENGTH_LONG).show();
                      Log.i(TAG, "OnResponse"+response.code());
                      Intent intent = new Intent(create_account.this, NavigationActivity.class);
                      //intent.putExtra ("ownerInfoObject", ownerInfo);
@@ -99,28 +94,9 @@ public class create_account extends AppCompatActivity {
 
                  @Override
                  public void onFailure(Call<ShopOwnerInfo> call, Throwable t) {
-                    //Toast.makeText(create_account.this, t.getMessage(), Toast.LENGTH_LONG).show();
                      Log.i(TAG,"onFailure"+ t.getMessage());
                  }
              });
-
-
-            /*AttributeMethods methods = PawnShopRetrofitClient.getRetrofitInstance ().create (AttributeMethods.class);
-            Call<ShopOwnerInfo> call = methods.postShopOwnerInfo(ownerInfo.getUser_app_lang(), ownerInfo.getUser_mob_no(), ownerInfo.getUser_mpin(), ownerInfo.getUser_name(),ownerInfo.getUser_created_at(), ownerInfo.getOtp_verification());
-            call.enqueue(new Callback<ShopOwnerInfo>() {
-                @Override
-                public void onResponse(Call<ShopOwnerInfo> call, Response<ShopOwnerInfo> response) {
-                    Toast.makeText(create_account.this, response.code(), Toast.LENGTH_LONG).show();
-                    *//*Intent intent = new Intent(create_account.this, create_loan.class);
-                    intent.putExtra ("ownerInfoObject", ownerInfo);
-                    startActivity(intent);*//*
-                }
-
-                @Override
-                public void onFailure(Call<ShopOwnerInfo> call, Throwable t) {
-                    Toast.makeText(create_account.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                }
-            });*/
         }else{
             // error message
         }

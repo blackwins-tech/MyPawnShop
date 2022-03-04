@@ -73,6 +73,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
     <string name="Total_Loan">Total Loan Amount</string>
+    <string name="Eligible_Amount">Eligible Amount</string>
     <string name="menu_home">Estimate</string>
     <string name="menu_settings">Settings</string>
     <string name="menu_gallery">Reports</string>
@@ -83,4 +84,11 @@
     <string name="submenu_app2">Apartment Maintatenance App</string>
     <string name="todo">TODO</string>
     <string name="company_name">copyright @ blackwinsstudio</string>
+    <string name="title_estimate">Calculate Eligible Loan Amount</string>
+    <string name="Per_gram">Per Gram /Sovergin</string>
+    <string name="spinner_prompt">Select gram</string>
+<string name="InterestAmount">InterestAmount</string>
+    <string name="InterestType">InterestType</string>
+
+    <string name="interest_spinner_prompt">Select type</string>
 </resources>

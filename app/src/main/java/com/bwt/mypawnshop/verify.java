@@ -36,7 +36,7 @@ public class verify extends AppCompatActivity {
     ProgressBar progressBar;
     Button submitOTP;
     EditText otpDigit01;
-    //otpDigit02,otpDigit03,otpDigit04,otpDigit05,otpDigit06;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,11 +44,6 @@ public class verify extends AppCompatActivity {
         setContentView(R.layout.activity_verify);
         sentNumberedTextView = (TextView) findViewById(R.id.sentNumberedTextView);
         otpDigit01 = (EditText)findViewById(R.id.otp_digit_01);
-        /*otpDigit02 = (EditText)findViewById(R.id.otp_digit_02);
-        otpDigit03 = (EditText)findViewById(R.id.otp_digit_03);
-        otpDigit04 = (EditText)findViewById(R.id.otp_digit_04);
-        otpDigit05 = (EditText)findViewById(R.id.otp_digit_05);
-        otpDigit06 = (EditText)findViewById(R.id.otp_digit_06);*/
         ownerInfo = (ShopOwnerInfo) getIntent().getSerializableExtra("ownerInfoObject");
         progressBar = findViewById(R.id.progressBar);
         regmob = ownerInfo.getUser_mob_no();

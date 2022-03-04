@@ -1,6 +1,7 @@
 package com.bwt.mypawnshop;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -31,11 +32,21 @@ public class NavigationActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavView;
     private CoordinatorLayout contentView;
     private TextView OwnerMobile;
+    String mobileNumberValue;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigation);
+        // Storing data into SharedPreferences
+        sharedPreferences = getSharedPreferences("MyPawnShopPreferences",MODE_PRIVATE);
+        if(sharedPreferences.getString("mobileNumber", "").isEmpty()) {
+            // do nothing
+            mobileNumberValue = "+91 XXXXXXXXXXX";
+        }else{
+            mobileNumberValue = sharedPreferences.getString("mobileNumber", "");
+        }
 
         initToolbar();
         //initFab();
@@ -50,18 +61,6 @@ public class NavigationActivity extends AppCompatActivity {
 
     }
 
-    /*private void initFab() {
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-
-    }*/
 
     private void initNavigation() {
 
@@ -80,11 +79,10 @@ public class NavigationActivity extends AppCompatActivity {
                 .build();
         navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-
         NavigationUI.setupWithNavController(navigationView, navController);
         NavigationUI.setupWithNavController(bottomNavView, navController);
-
-
+        TextView OwnerMobile = navigationView.findViewById(R.id.OwnerMobile);
+        //OwnerMobile.setText(mobileNumberValue);
         //animateNavigationDrawer();
     }
 

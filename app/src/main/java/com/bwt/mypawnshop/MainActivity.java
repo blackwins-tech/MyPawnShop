@@ -11,37 +11,36 @@ import android.os.Handler;
 import android.util.Log;
 
 public class MainActivity extends AppCompatActivity {
-
+    public static final String TAG = "MyPawnShop:MainActivity";
+    boolean isLoggedIn = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SharedPreferences sh = getSharedPreferences("MyPawnShopPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor myEdit = sh.edit();
+        String isAlreadyLoginFlag = sh.getString("isAlreadyLogin", "");
+        if(isAlreadyLoginFlag.equals("yes")){
+            isLoggedIn = true;
+        }else{
+            isLoggedIn = false;
+        }
         new Handler().postDelayed(new Runnable() {
-
-
             @Override
             public void run() {
-                // This method will be executed once the timer is over
-                SharedPreferences sh = getSharedPreferences("MyPawnShopPreferences", MODE_PRIVATE);
-                SharedPreferences.Editor myEdit = sh.edit();
-
-                myEdit.putString("isAlreadyLogin","no");
-                myEdit.apply();
-                myEdit.commit();
-                // The value will be default as empty string because for
                 // the very first time when the app is opened, there is nothing to show
-                String s1 = sh.getString("mobile number", "");
-                int a = sh.getInt("age", 0);
                 Log.i(TAG,sh.getString("isAlreadyLogin", ""));
-                     if(sh.getString("isAlreadyLogin","").equals("yes")){
-                         Intent i = new Intent(MainActivity.this, Register_mobile_number.class);
-                         startActivity(i);
-                         finish();
-                     } else {
-                         Intent i = new Intent(MainActivity.this, NavigationActivity.class);
-                         startActivity(i);
-                         finish();
-                     }
+                if(isLoggedIn){
+                    Log.i(TAG,"If.."+ String.valueOf(isLoggedIn));
+                    Intent i = new Intent(MainActivity.this, NavigationActivity.class);
+                    startActivity(i);
+                    finish();
+                } else {
+                    Log.i(TAG, "Else.."+String.valueOf(isLoggedIn));
+                    Intent i = new Intent(MainActivity.this, Register_mobile_number.class);
+                    startActivity(i);
+                    finish();
+                }
 
 
             }
